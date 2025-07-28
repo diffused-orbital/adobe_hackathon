@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # ✅ Copy the script and model
 COPY run.py .
-COPY model/ ./model/
+COPY best.pt
 
 # ✅ Run script on container start
 ENTRYPOINT ["python", "run.py"]

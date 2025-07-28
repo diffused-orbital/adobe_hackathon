@@ -16,7 +16,7 @@ from pathlib import Path
 INPUT_DIR = "/app/input"
 OUTPUT_DIR = "/app/output"
 
-MODEL_PATH = "model/best.pt"
+MODEL_PATH = "best.pt"
 
 # Path to tesseract in Ubuntu
 pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
