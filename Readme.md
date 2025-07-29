@@ -85,6 +85,8 @@ docker run --rm \
   round1a-solution
 ```
 
+> 📝 Replace `^` with `\` if using Bash or zsh. Always check volume paths if using WSL or Git Bash on Windows.
+
 ---
 
 ## ✅ Output Format Example
@@ -139,8 +141,5 @@ docker rmi round1a-solution
 
 This code is part of the Adobe India Hackathon submission by **Sanidhya Srivastava**.
 
-```
+````
 
----
-
-```
