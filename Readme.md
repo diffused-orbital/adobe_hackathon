@@ -1,7 +1,3 @@
-Here's the complete `README.md` content — updated to reflect **no `model/` folder** and a **Drive link** for downloading `best.pt`:
-
----
-
 ```markdown
 # 📄 Adobe Hackathon Round 1A – Heading Detection from PDFs
 
@@ -31,7 +27,7 @@ Round\_1A/
 The `best.pt` file is **not included** in this repository.
 
 🔗 Download it from:  
-👉 [Google Drive - Trained YOLOv8 Model](https://drive.google.com/drive/folders/1-j4ZGJ9p5aqeNOkBULMzImHfKA-EQY6t?usp=sharing)
+👉 [Google Drive – Trained YOLOv8 Model](https://drive.google.com/drive/folders/1-j4ZGJ9p5aqeNOkBULMzImHfKA-EQY6t?usp=sharing)
 
 Place the `best.pt` file directly in the project root (`Round_1A/`), **at the same level as `run.py`**.
 
@@ -39,31 +35,39 @@ Place the `best.pt` file directly in the project root (`Round_1A/`), **at the sa
 
 ## 🐳 Step 2: Build the Docker Image
 
-Open terminal in the `Round_1A` directory and run:
+Open a terminal or PowerShell in the `Round_1A` directory and run:
 
 ```bash
 docker build -t round1a-solution .
 ````
 
+This command will:
+
+* Install system dependencies (like Tesseract)
+* Install Python packages from `requirements.txt`
+* Package your script and model into a ready-to-run container
+
 ---
 
 ## 📂 Step 3: Prepare Input and Output Folders
 
-Create `input/` and `output/` directories in the same folder as your `run.py`:
+Create `input/` and `output/` folders in the project root:
 
 ```bash
 mkdir input
 mkdir output
 ```
 
-* Place one or more `.pdf` files inside the `input/` folder.
-* Output JSON files will be saved in the `output/` folder.
+* Add one or more `.pdf` files to the `input/` folder
+* The script will write structured JSONs into the `output/` folder
 
 ---
 
 ## 🚀 Step 4: Run the Container
 
-```bash
+### 🪟 On Windows (CMD or PowerShell):
+
+```powershell
 docker run --rm ^
   -v "%cd%/input:/app/input" ^
   -v "%cd%/output:/app/output" ^
@@ -71,13 +75,21 @@ docker run --rm ^
   round1a-solution
 ```
 
-> 🔄 If you're on PowerShell or Bash and `^` doesn't work, replace it with `\` or type the command in one line.
+### 🐧 On macOS/Linux (or Git Bash):
+
+```bash
+docker run --rm \
+  -v "$(pwd)/input:/app/input" \
+  -v "$(pwd)/output:/app/output" \
+  --network none \
+  round1a-solution
+```
 
 ---
 
 ## ✅ Output Format Example
 
-The script generates a structured JSON for each input PDF.
+Each output `.json` file looks like this:
 
 ```json
 {
@@ -102,20 +114,20 @@ The script generates a structured JSON for each input PDF.
 ## 🧠 Model Info
 
 * **Model Type:** YOLOv8 (custom-trained)
-* **Trained On:** Manually annotated images of PDF page screenshots
+* **Trained On:** Manually annotated PDF page screenshots
 * **Classes:** TITLE, HEADING1, HEADING2, etc.
 
 ---
 
 ## 🙋‍♂️ Notes
 
-* Tesseract OCR is used to extract text from detected heading regions.
-* The container uses CPU by default for inference.
-* Network access is **disabled** in Docker for security (`--network none`).
+* Uses **Tesseract OCR** to extract text from detected headings.
+* Runs on **CPU** by default (no GPU inside Docker).
+* Docker container is **fully sandboxed** (`--network none` for security).
 
 ---
 
-## 🧼 To Clean Up
+## 🧼 To Clean Up Docker Image
 
 ```bash
 docker rmi round1a-solution
@@ -131,7 +143,4 @@ This code is part of the Adobe India Hackathon submission by **Sanidhya Srivasta
 
 ---
 
-Just copy and paste this into `README.md`.
-
-Let me know if you want a version for GitHub-flavored markdown with badges or if you're submitting to Adobe as a ZIP.
 ```

@@ -13,8 +13,8 @@ from pathlib import Path
 # Set up paths for Docker
 # INPUT_DIR = r"C:/Adobe Hackathon/Round_1A/input"
 # OUTPUT_DIR = r"C:/Adobe Hackathon/Round_1A/output"
-INPUT_DIR = "/app/input"
-OUTPUT_DIR = "/app/output"
+INPUT_DIR = "input"
+OUTPUT_DIR = "output"
 
 MODEL_PATH = "best.pt"
 
